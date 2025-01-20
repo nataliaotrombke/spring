@@ -1,0 +1,5 @@
+rootProject.name = 'Data'
+
+include 'demo-data'
+include 'demo-updater'
+include 'demo-api'
