@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'com.opencsv:opencsv:5.7.1'
 
     implementation project(":demo-data")
 }
