@@ -12,12 +12,11 @@ public class Towns {
   private int townsId;
   private String townsName;
 
+  public Towns() {}
+
   public Towns(int townsId, String townsName) {
     this.townsId = townsId;
     this.townsName = townsName;
-  }
-
-  public Towns() {
   }
 
   public int getTownsId() {

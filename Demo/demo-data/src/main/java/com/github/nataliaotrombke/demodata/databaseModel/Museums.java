@@ -1,9 +1,6 @@
 package com.github.nataliaotrombke.demodata.databaseModel;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "museums")
 public class Museums {
@@ -13,17 +10,20 @@ public class Museums {
   private String museumsName;
   private String streetName;
   private int buildingNumber;
-  private int townsId;
 
-  public Museums(int museumsId, String museumsName, String zipCode, String streetName, int buildingNumber, int townsId) {
+  @ManyToOne
+  @JoinColumn(name = "towns_id", referencedColumnName = "townsId", nullable = false)
+  private Towns town;
+
+  public Museums() {
+  }
+
+  public Museums(int museumsId, String museumsName, String streetName, int buildingNumber, Towns town) {
     this.museumsId = museumsId;
     this.museumsName = museumsName;
     this.streetName = streetName;
     this.buildingNumber = buildingNumber;
-    this.townsId = townsId;
-  }
-
-  public Museums() {
+    this.town = town;
   }
 
   public int getMuseumsId() {
@@ -58,11 +58,11 @@ public class Museums {
     this.buildingNumber = buildingNumber;
   }
 
-  public int getTownsId() {
-    return townsId;
+  public Towns getTown() {
+    return town;
   }
 
-  public void setTownsId(int townsId) {
-    this.townsId = townsId;
+  public void setTown(Towns town) {
+    this.town = town;
   }
 }

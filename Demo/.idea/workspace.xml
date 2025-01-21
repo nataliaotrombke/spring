@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdaterController.java" afterDir="false" />
+    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="wstępne pobieranie z internetu">
+      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdaterContreller.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/md5-checksums.bin" afterDir="false" />
@@ -21,7 +20,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-updater/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Museums.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Museums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Towns.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Towns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/HistoricalMonumentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/HistoricalMonumentsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/MuseumRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/MuseumRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/TownsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/TownsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +150,11 @@
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -236,11 +248,24 @@
       <workItem from="1737403030702" duration="283000" />
       <workItem from="1737403329402" duration="5686000" />
       <workItem from="1737411228124" duration="26000" />
-      <workItem from="1737411274399" duration="5597000" />
+      <workItem from="1737411274399" duration="14588000" />
     </task>
+    <task id="LOCAL-00001" summary="wstępne pobieranie z internetu">
+      <option name="closed" value="true" />
+      <created>1737418259831</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737418259831</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="wstępne pobieranie z internetu" />
+    <option name="LAST_COMMIT_MESSAGE" value="wstępne pobieranie z internetu" />
   </component>
 </project>
