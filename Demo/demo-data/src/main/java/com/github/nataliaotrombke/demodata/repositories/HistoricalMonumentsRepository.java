@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface HistoricalMonumentsRepository extends JpaRepository<HistoricalMonuments, Integer> {
 
-    Optional<HistoricalMonuments> findFirstByHistoricalMonumentsName(String historicalMonumentsName);
+    Optional<HistoricalMonuments> findHistoricalMonumentsByMonumentsName(String historicalMonumentsName);
+
 }

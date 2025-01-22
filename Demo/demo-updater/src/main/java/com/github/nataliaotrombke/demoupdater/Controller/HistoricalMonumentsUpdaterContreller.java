@@ -14,11 +14,11 @@ public class HistoricalMonumentsUpdaterContreller {
 
     final HistoricalMonumentsUpdater updater;
 
-    public HistoricalMonumentsUpdater(HistoricalMonumentsUpdater updater){
+    public HistoricalMonumentsUpdaterContreller(HistoricalMonumentsUpdater updater) {
         this.updater = updater;
     }
 
-    @GetMapping("start")
+    @GetMapping("startHistorical")
     public ResponseEntity<String> start(@RequestParam String city) throws CsvValidationException, IOException, URISyntaxException {
         updater.updateByCity(city);
 

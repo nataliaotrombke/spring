@@ -1,34 +1,19 @@
 package com.github.nataliaotrombke.demodata.databaseModel;
 
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity(name = "historicalMonuments")
+@Entity
+@Table(name = "historical_monuments", schema = "data")
 public class HistoricalMonuments {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-  private Integer monumentsId;
+  private int monumentsId;
   private String monumentsName;
   private String typeOfHistoricalMonument;
   private String dateOfEntry;
   private String streetName;
-  private Integer buildingNumber;
-
-  public HistoricalMonuments(int monumentsId, String monumentsName, String typeOfHistoricalMonument, String dateOfEntry, String zipCode, String streetName, int buildingNumber) {
-    this.monumentsId = monumentsId;
-    this.monumentsName = monumentsName;
-    this.typeOfHistoricalMonument = typeOfHistoricalMonument;
-    this.dateOfEntry = dateOfEntry;
-    this.streetName = streetName;
-    this.buildingNumber = buildingNumber;
-  }
-
-  public HistoricalMonuments() {
-  }
+  private int buildingNumber;
+  private int townsId;
 
   public int getMonumentsId() {
     return monumentsId;
@@ -70,7 +55,6 @@ public class HistoricalMonuments {
     this.streetName = streetName;
   }
 
-
   public int getBuildingNumber() {
     return buildingNumber;
   }
@@ -79,4 +63,14 @@ public class HistoricalMonuments {
     this.buildingNumber = buildingNumber;
   }
 
+  public int getTownsId() {
+    return townsId;
+  }
+
+  public void setTownsId(int townsId) {
+    this.townsId = townsId;
+  }
+
+  public void setTown(Towns townToUse) {
+  }
 }

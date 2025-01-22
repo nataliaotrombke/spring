@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ImmovableMonumentsControler {
-    public ImmovableMonumentsService immovableMonumentsService;
+public class ImmovableMonumentsController {
+    private ImmovableMonumentsService immovableMonumentsService;
 
-    public ImmovableMonumentsControler(ImmovableMonumentsService immovableMonumentsService) {
+    public ImmovableMonumentsController(ImmovableMonumentsService immovableMonumentsService) {
         this.immovableMonumentsService = immovableMonumentsService;
     }
 
@@ -30,7 +30,7 @@ public class ImmovableMonumentsControler {
     public ResponseEntity<?> updateImmovableMonuments(
             @PathVariable int id,
             @RequestBody ImmovableMonuments partialUpdate) {
-        var optionalImmovableMonuments = immovableMonumentsService.getSignle(id);
+        var optionalImmovableMonuments = immovableMonumentsService.getSingle(id);
 
         if (optionalImmovableMonuments.isPresent()) {
             ImmovableMonuments existingImmovableMonuments = optionalImmovableMonuments.get();
@@ -44,22 +44,24 @@ public class ImmovableMonumentsControler {
             if (partialUpdate.getStreetName() != null) {
                 existingImmovableMonuments.setStreetName(partialUpdate.getStreetName());
             }
-            if (partialUpdate.getBuildingNumber() != 0){
+            if (partialUpdate.getBuildingNumber() != 0) {
                 existingImmovableMonuments.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
-
+            if (partialUpdate.getTownsId() != 0) {
+                existingImmovableMonuments.setTownsId(partialUpdate.getTownsId());
+            }
 
             immovableMonumentsService.createOrUpdate(existingImmovableMonuments);
 
             return new ResponseEntity<>(existingImmovableMonuments, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("The given Id doesn't exist in the database",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("The given Id doesn't exist in the database", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/immovableMonuments/{id}")
     public ResponseEntity<?> getImmovableMonument(@PathVariable int id) {
-        var item = immovableMonumentsService.getSignle(id);
+        var item = immovableMonumentsService.getSingle(id);
 
         if (item.isPresent()) {
             return new ResponseEntity<>(item.get(), HttpStatus.OK);

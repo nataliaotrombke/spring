@@ -1,22 +1,23 @@
 package com.github.nataliaotrombke.demodata.databaseModel;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "Towns")
 public class Towns {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int townsId;
+@ManyToOne
+@JoinColumn(name = "voivodeships_id")
+  private Voivodeships voivodeships;
   private String townsName;
 
   public Towns() {}
 
-  public Towns(int townsId, String townsName) {
+  public Towns(int townsId, String townsName, Voivodeships voivodeships) {
     this.townsId = townsId;
     this.townsName = townsName;
+    this.voivodeships = voivodeships;
   }
 
   public int getTownsId() {
@@ -33,5 +34,13 @@ public class Towns {
 
   public void setTownsName(String townsName) {
     this.townsName = townsName;
+  }
+
+  public Voivodeships getVoivodeships() {
+    return voivodeships;
+  }
+
+  public void setVoivodeships(Voivodeships voivodeships) {
+    this.voivodeships = voivodeships;
   }
 }

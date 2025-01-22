@@ -1,29 +1,22 @@
-package com.github.nataliaotrombke.demodata.databaseModel;
+package com.github.nataliaotrombke.demoapi.dto;
 
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "museums", schema = "data")
-public class Museums {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class MuseumsDto {
   private int museumsId;
-  @ManyToOne
-  @JoinColumn(name = "towns_id")
-  private Towns town;
+  private int townsId;
   private String museumsName;
   private String streetName;
   private int buildingNumber;
 
-  public Museums() {
-  }
-
-  public Museums(int museumsId, String museumsName, String streetName, int buildingNumber, Towns town) {
+  public MuseumsDto(int museumsId, int townsId, String museumsName, String streetName, int buildingNumber) {
     this.museumsId = museumsId;
+    this.townsId = townsId;
     this.museumsName = museumsName;
     this.streetName = streetName;
     this.buildingNumber = buildingNumber;
-    this.town = town;
+  }
+
+  public MuseumsDto() {
   }
 
   public int getMuseumsId() {
@@ -32,6 +25,14 @@ public class Museums {
 
   public void setMuseumsId(int museumsId) {
     this.museumsId = museumsId;
+  }
+
+  public int getTownsId() {
+    return townsId;
+  }
+
+  public void setTownsId(int townsId) {
+    this.townsId = townsId;
   }
 
   public String getMuseumsName() {
@@ -57,12 +58,4 @@ public class Museums {
   public void setBuildingNumber(int buildingNumber) {
     this.buildingNumber = buildingNumber;
   }
-
-    public Towns getTown() {
-        return town;
-    }
-
-    public void setTown(Towns town) {
-        this.town = town;
-    }
 }

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class VoivodeshipsControler {
-    private VoivodeshipsService voivodeshipsService;
+public class VoivodeshipsController {
+    private final VoivodeshipsService voivodeshipsService;
 
-    public VoivodeshipsControler(VoivodeshipsService voivodeshipsService) {
+    public VoivodeshipsController(VoivodeshipsService voivodeshipsService) {
         this.voivodeshipsService = voivodeshipsService;
     }
 
@@ -30,7 +30,7 @@ public class VoivodeshipsControler {
     public ResponseEntity<?> updateVoivodeships(
             @PathVariable int id,
             @RequestBody Voivodeships partialUpdate) {
-        var optionalVoivodeships = voivodeshipsService.getSignle(id);
+        var optionalVoivodeships = voivodeshipsService.getSingle(id);
 
         if (optionalVoivodeships.isPresent()) {
             Voivodeships existingVoivodeships = optionalVoivodeships.get();
@@ -44,12 +44,12 @@ public class VoivodeshipsControler {
             return new ResponseEntity<>(existingVoivodeships, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("The given Id doesn't exist in the database",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("The given Id doesn't exist in the database", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/voivodeships/{id}")
     public ResponseEntity<?> getVoivodeships(@PathVariable int id) {
-        var item = voivodeshipsService.getSignle(id);
+        var item = voivodeshipsService.getSingle(id);
 
         if (item.isPresent()) {
             return new ResponseEntity<>(item.get(), HttpStatus.OK);

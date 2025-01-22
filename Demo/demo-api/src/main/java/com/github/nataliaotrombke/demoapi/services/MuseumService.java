@@ -9,36 +9,35 @@ import java.util.Optional;
 
 @Service
 public class MuseumService {
-    private MuseumRepository MuseumRepo;
+    private final MuseumRepository museumRepo;
 
     public MuseumService(MuseumRepository museumRepo) {
-        MuseumRepo = museumRepo;
+        this.museumRepo = museumRepo;
     }
-    public List<Museums>getAll() {
-        return MuseumRepo.findAll();
+
+    public List<Museums> getAll() {
+        return museumRepo.findAll();
     }
 
     public int create(Museums museums) {
-        var created = MuseumRepo.save(museums);
-
+        var created = museumRepo.save(museums);
         return created.getMuseumsId();
     }
 
     public int createOrUpdate(Museums museums) {
-        var created = MuseumRepo.save(museums);
+        var created = museumRepo.save(museums);
         return created.getMuseumsId();
     }
 
-    public Optional<Museums> getSignle(int id) {
-        return MuseumRepo.findById(id);
+    public Optional<Museums> getSingle(int id) {
+        return museumRepo.findById(id);
     }
 
     public boolean delete(int id) {
-        if (MuseumRepo.existsById(id)) {
-            MuseumRepo.deleteById(id);
+        if (museumRepo.existsById(id)) {
+            museumRepo.deleteById(id);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

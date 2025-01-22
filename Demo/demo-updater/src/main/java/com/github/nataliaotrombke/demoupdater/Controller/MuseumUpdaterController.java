@@ -21,7 +21,7 @@ public class MuseumUpdaterController {
     // start?city=miasto%20dcsd
     // start/miasto%20sdjvnsd
 
-    @GetMapping("start")
+    @GetMapping("startMuseum")
     public ResponseEntity<String> start(@RequestParam String city) throws CsvValidationException, IOException, URISyntaxException {
         updater.updateByCity(city);
 

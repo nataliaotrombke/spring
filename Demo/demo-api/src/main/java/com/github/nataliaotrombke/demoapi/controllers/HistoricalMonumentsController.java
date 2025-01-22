@@ -1,6 +1,7 @@
 package com.github.nataliaotrombke.demoapi.controllers;
 
 import com.github.nataliaotrombke.demoapi.services.HistoricalMonumentsService;
+import com.github.nataliaotrombke.demoapi.services.TownsService;
 import com.github.nataliaotrombke.demodata.databaseModel.HistoricalMonuments;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,17 +9,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-public class HistoricalMonumentsControler {
-    private HistoricalMonumentsService historicalMonumentsService;
+public class HistoricalMonumentsController {
+    private final HistoricalMonumentsService historicalMonumentsService;
+    private final TownsService townsService;
 
-    public HistoricalMonumentsControler(HistoricalMonumentsService historicalMonumentsService) {
+    public HistoricalMonumentsController(HistoricalMonumentsService historicalMonumentsService, TownsService townsService) {
         this.historicalMonumentsService = historicalMonumentsService;
+        this.townsService = townsService;
     }
 
     @GetMapping("/historicalMonuments")
-    public  List<HistoricalMonuments> listAllHistoricalMonuments() {
+    public List<HistoricalMonuments> listAllHistoricalMonuments() {
         return historicalMonumentsService.getAll();
     }
 
@@ -26,11 +28,12 @@ public class HistoricalMonumentsControler {
     public int createHistoricalMonument(@RequestBody HistoricalMonuments historicalMonuments) {
         return historicalMonumentsService.createOrUpdate(historicalMonuments);
     }
+
     @PatchMapping("/historicalMonuments/{id}")
     public ResponseEntity<?> updateHistoricalMonument(
             @PathVariable int id,
             @RequestBody HistoricalMonuments partialUpdate) {
-        var optionalHistoricalMonuments = historicalMonumentsService.getSignle(id);
+        var optionalHistoricalMonuments = historicalMonumentsService.getSingle(id);
 
         if (optionalHistoricalMonuments.isPresent()) {
             HistoricalMonuments existingMonument = optionalHistoricalMonuments.get();
@@ -50,19 +53,21 @@ public class HistoricalMonumentsControler {
             if (partialUpdate.getBuildingNumber() != 0) {
                 existingMonument.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
+            if (partialUpdate.getTownsId() != 0) {
+                existingMonument.setTownsId(partialUpdate.getTownsId());
+            }
 
             historicalMonumentsService.createOrUpdate(existingMonument);
 
             return new ResponseEntity<>(existingMonument, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("The given Id doesn't exist in the database",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("The given Id doesn't exist in the database", HttpStatus.NOT_FOUND);
     }
 
-
     @GetMapping("/historicalMonuments/{id}")
-    public ResponseEntity<?> gethistoricalMonuments(@PathVariable int id) {
-        var item = historicalMonumentsService.getSignle(id);
+    public ResponseEntity<?> getHistoricalMonuments(@PathVariable int id) {
+        var item = historicalMonumentsService.getSingle(id);
 
         if (item.isPresent()) {
             return new ResponseEntity<>(item.get(), HttpStatus.OK);

@@ -6,6 +6,7 @@ import com.github.nataliaotrombke.demodata.repositories.HistoricalMonumentsRepos
 import com.github.nataliaotrombke.demodata.repositories.TownsRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,8 +16,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+@Service
 public class HistoricalMonumentsUpdater {
-
     TownsRepository townsRepository;
     HistoricalMonumentsRepository historicalMonumentsRepository;
 
@@ -44,28 +45,45 @@ public class HistoricalMonumentsUpdater {
                 var dokladnosci = nextLine[2];
                 var typeOfHistoricalMonument = nextLine[3];
                 var dateOfEntry = nextLine[4];
-
+                var wojewodzrwo = nextLine[5];
+                var powiat = nextLine[6];
+                var gmina = nextLine[7];
+                var townName = nextLine[8];
+                var streetName = nextLine[9];
+                var buildingNumber = nextLine[10];
 
 
                 if (!townName.equalsIgnoreCase(city)) continue;
 
                 Towns townToUse;
                 var foundTown = townsRepository.findFirstByTownsName(townName);
-                if (foundTown.isEmpty()){
-                    var newTown = new Towns();
-                    towntoSave.setTownsName(townName);
-                    townToUse = foundTown.get();
+                if (foundTown.isEmpty()) {
+                    var townToSave = new Towns();
+                    townToSave.setTownsName(townName);
+                    townToUse = townsRepository.save(townToSave);
                 } else {
                     townToUse = foundTown.get();
                 }
 
-                HistoricalMonuments historicalMonumentsToSave.findFirstByHistoricalMonumentsName(historicalMonumentsName);
+                HistoricalMonuments historicalMonumentsToSave;
+                var foundHistoricalMonuments = historicalMonumentsRepository.findHistoricalMonumentsByMonumentsName(historicalMonumentsName);
                 if (foundHistoricalMonuments.isPresent()) {
                     historicalMonumentsToSave = foundHistoricalMonuments.get();
                 } else {
                     historicalMonumentsToSave = new HistoricalMonuments();
                 }
+
+                historicalMonumentsToSave.setMonumentsName(historicalMonumentsName);
+                historicalMonumentsToSave.setStreetName(streetName);
+                historicalMonumentsToSave.setTown(townToUse);
+                var createdHistoricalMonuments = historicalMonumentsRepository.save(historicalMonumentsToSave);
+
+                System.out.println("Historical Monuments: " + historicalMonumentsName + " zapisane pod kluczem: " + createdHistoricalMonuments.getMonumentsId());
+            break;
             }
+        } finally {
+
+            connection.disconnect();
         }
     }
 

@@ -9,36 +9,35 @@ import java.util.Optional;
 
 @Service
 public class VoivodeshipsService {
-    private VoivodeshipsRepository VoivodeshipsRepo;
+    private final VoivodeshipsRepository voivodeshipsRepo;
 
     public VoivodeshipsService(VoivodeshipsRepository voivodeshipsRepo) {
-        VoivodeshipsRepo = voivodeshipsRepo;
+        this.voivodeshipsRepo = voivodeshipsRepo;
     }
 
     public List<Voivodeships> getAll() {
-        return VoivodeshipsRepo.findAll();
+        return voivodeshipsRepo.findAll();
     }
 
     public int create(Voivodeships voivodeships) {
-        var created = VoivodeshipsRepo.save(voivodeships);
+        var created = voivodeshipsRepo.save(voivodeships);
         return created.getVoivodeshipsId();
     }
 
     public int createOrUpdate(Voivodeships voivodeships) {
-        var created = VoivodeshipsRepo.save(voivodeships);
+        var created = voivodeshipsRepo.save(voivodeships);
         return created.getVoivodeshipsId();
     }
 
-    public Optional<Voivodeships> getSignle(int id) {
-        return VoivodeshipsRepo.findById(id);
+    public Optional<Voivodeships> getSingle(int id) {
+        return voivodeshipsRepo.findById(id);
     }
 
     public boolean delete(int id) {
-        if (VoivodeshipsRepo.existsById(id)) {
-            VoivodeshipsRepo.deleteById(id);
+        if (voivodeshipsRepo.existsById(id)) {
+            voivodeshipsRepo.deleteById(id);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

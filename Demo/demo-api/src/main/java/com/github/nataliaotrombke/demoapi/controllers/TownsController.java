@@ -5,14 +5,13 @@ import com.github.nataliaotrombke.demodata.databaseModel.Towns;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 @RestController
-public class TownsControler {
+public class TownsController {
     private TownsService townsService;
 
-    public TownsControler(TownsService townsService) {
+    public TownsController(TownsService townsService) {
         this.townsService = townsService;
     }
 
@@ -29,7 +28,7 @@ public class TownsControler {
     public ResponseEntity<?> updateTowns(
             @PathVariable int id,
             @RequestBody Towns partialUpdate) {
-        var optionalTowns = townsService.getSignle(id);
+        var optionalTowns = townsService.getSingle(id);
 
         if (optionalTowns.isPresent()) {
             Towns existingTowns = optionalTowns.get();
@@ -48,7 +47,7 @@ public class TownsControler {
 
     @GetMapping("/towns/{id}")
     public ResponseEntity<?> getTowns(@PathVariable int id) {
-        var item = townsService.getSignle(id);
+        var item = townsService.getSingle(id);
 
         if (item.isPresent()) {
             return new ResponseEntity<>(item.get(), HttpStatus.OK);
@@ -65,6 +64,4 @@ public class TownsControler {
             return new ResponseEntity<>("The given Id doesn't exist", HttpStatus.NOT_FOUND);
         }
     }
-
-
 }

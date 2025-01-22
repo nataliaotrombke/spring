@@ -7,39 +7,37 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class HistoricalMonumentsService {
-    private HistoricalMonumentsRepository HistoricalMonumentsRepo;
+    private final HistoricalMonumentsRepository historicalMonumentsRepo;
 
     public HistoricalMonumentsService(HistoricalMonumentsRepository historicalMonumentsRepo) {
-        HistoricalMonumentsRepo = historicalMonumentsRepo;
+        this.historicalMonumentsRepo = historicalMonumentsRepo;
     }
 
-    public List<HistoricalMonuments>getAll(){
-        return HistoricalMonumentsRepo.findAll();
+    public List<HistoricalMonuments> getAll() {
+        return historicalMonumentsRepo.findAll();
     }
 
     public int create(HistoricalMonuments historicalMonuments) {
-        var created = HistoricalMonumentsRepo.save(historicalMonuments);
+        var created = historicalMonumentsRepo.save(historicalMonuments);
         return created.getMonumentsId();
     }
 
     public int createOrUpdate(HistoricalMonuments historicalMonuments) {
-        var created = HistoricalMonumentsRepo.save(historicalMonuments);
+        var created = historicalMonumentsRepo.save(historicalMonuments);
         return created.getMonumentsId();
     }
 
-    public Optional<HistoricalMonuments> getSignle(int id) {
-        return HistoricalMonumentsRepo.findById(id);
+    public Optional<HistoricalMonuments> getSingle(int id) {
+        return historicalMonumentsRepo.findById(id);
     }
 
     public boolean delete(int id) {
-        if (HistoricalMonumentsRepo.existsById(id)) {
-            HistoricalMonumentsRepo.deleteById(id);
+        if (historicalMonumentsRepo.existsById(id)) {
+            historicalMonumentsRepo.deleteById(id);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

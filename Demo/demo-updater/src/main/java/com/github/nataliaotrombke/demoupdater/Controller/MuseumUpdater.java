@@ -2,8 +2,10 @@ package com.github.nataliaotrombke.demoupdater.Controller;
 
 import com.github.nataliaotrombke.demodata.databaseModel.Museums;
 import com.github.nataliaotrombke.demodata.databaseModel.Towns;
+import com.github.nataliaotrombke.demodata.databaseModel.Voivodeships;
 import com.github.nataliaotrombke.demodata.repositories.MuseumRepository;
 import com.github.nataliaotrombke.demodata.repositories.TownsRepository;
+import com.github.nataliaotrombke.demodata.repositories.VoivodeshipsRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,12 @@ import java.net.URL;
 public class MuseumUpdater {
     TownsRepository townsRepository;
     MuseumRepository museumRepository;
+    VoivodeshipsRepository voivodeshipsRepository;
 
-    public MuseumUpdater(TownsRepository townsRepository, MuseumRepository museumRepository) {
+    public MuseumUpdater(TownsRepository townsRepository, MuseumRepository museumRepository, VoivodeshipsRepository voivodeshipsRepository) {
         this.townsRepository = townsRepository;
         this.museumRepository = museumRepository;
+        this.voivodeshipsRepository = voivodeshipsRepository;
     }
 
     public void updateByCity(String city) throws IOException, URISyntaxException, CsvValidationException {
@@ -46,7 +50,7 @@ public class MuseumUpdater {
                 var townName = nextLine[3];
                 var gmina = nextLine[4];
                 var powiat  = nextLine[5];
-                var voivodeship = nextLine[6];
+                var voivodeshipsName = nextLine[6];
                 var ulicaAlejaAplac = nextLine[7];
                 var street = nextLine[8];
                 var nrDomu = nextLine[9];
@@ -54,12 +58,23 @@ public class MuseumUpdater {
 
                 if (!townName.equalsIgnoreCase(city)) continue;
 
+                Voivodeships voivodeshipsToUse;
+                var foundVoivodeship = voivodeshipsRepository.findFirstByVoivodeshipsName(voivodeshipsName);
+                if (foundVoivodeship.isEmpty()){
+                    var voivodeshipToSave = new Voivodeships();
+                    voivodeshipToSave.setVoivodeshipsName(voivodeshipsName);
+                    voivodeshipsToUse = voivodeshipsRepository.save(voivodeshipToSave);
+                } else {
+                    voivodeshipsToUse = foundVoivodeship.get();
+                }
 
                 Towns townToUse;
                 var foundTown = townsRepository.findFirstByTownsName(townName);
                 if (foundTown.isEmpty()) {
                     var townToSave = new Towns();
                     townToSave.setTownsName(townName);
+
+                    townToSave.setVoivodeships(voivodeshipsToUse);
                     townToUse = townsRepository.save(townToSave);
                 } else {
                     townToUse = foundTown.get();

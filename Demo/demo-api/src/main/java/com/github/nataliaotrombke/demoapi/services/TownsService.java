@@ -9,36 +9,35 @@ import java.util.Optional;
 
 @Service
 public class TownsService {
-    private TownsRepository TownRepo;
+    private final TownsRepository townRepo;
 
     public TownsService(TownsRepository townRepo) {
-        TownRepo = townRepo;
+        this.townRepo = townRepo;
     }
 
-    public List<Towns> getAll(){
-       return TownRepo.findAll();
+    public List<Towns> getAll() {
+        return townRepo.findAll();
     }
 
     public int create(Towns towns) {
-        var created = TownRepo.save(towns);
+        var created = townRepo.save(towns);
         return created.getTownsId();
     }
 
     public int createOrUpdate(Towns towns) {
-        var created = TownRepo.save(towns);
+        var created = townRepo.save(towns);
         return created.getTownsId();
     }
 
-    public Optional<Towns> getSignle(int id) {
-        return TownRepo.findById(id);
+    public Optional<Towns> getSingle(int id) {
+        return townRepo.findById(id);
     }
 
     public boolean delete(int id) {
-        if (TownRepo.existsById(id)) {
-            TownRepo.deleteById(id);
+        if (townRepo.existsById(id)) {
+            townRepo.deleteById(id);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
