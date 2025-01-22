@@ -1,5 +1,7 @@
 package com.github.nataliaotrombke.demoapi.controllers;
 
+import com.github.nataliaotrombke.demoapi.dto.VoivodeshipsDto;
+import com.github.nataliaotrombke.demoapi.services.TownsService;
 import com.github.nataliaotrombke.demoapi.services.VoivodeshipsService;
 import com.github.nataliaotrombke.demodata.databaseModel.Voivodeships;
 import org.springframework.http.HttpStatus;
@@ -11,9 +13,11 @@ import java.util.List;
 @RestController
 public class VoivodeshipsController {
     private final VoivodeshipsService voivodeshipsService;
+    private final TownsService townsService;
 
-    public VoivodeshipsController(VoivodeshipsService voivodeshipsService) {
+    public VoivodeshipsController(VoivodeshipsService voivodeshipsService, TownsService townsService) {
         this.voivodeshipsService = voivodeshipsService;
+        this.townsService = townsService;
     }
 
     @GetMapping("/voivodeships")
@@ -22,14 +26,16 @@ public class VoivodeshipsController {
     }
 
     @PostMapping("/voivodeships")
-    public int createVoivodeship(@RequestBody Voivodeships voivodeships) {
-        return voivodeshipsService.create(voivodeships);
+    public int createVoivodeship(@RequestBody VoivodeshipsDto voivodeshipsDto) {
+        var voivodeshipsDb = new Voivodeships();
+        voivodeshipsDb.setVoivodeshipsName(voivodeshipsDto.getVoivodeshipsName());
+        return voivodeshipsService.create(voivodeshipsDb);
     }
 
     @PatchMapping("/voivodeships/{id}")
     public ResponseEntity<?> updateVoivodeships(
             @PathVariable int id,
-            @RequestBody Voivodeships partialUpdate) {
+            @RequestBody VoivodeshipsDto partialUpdate) {
         var optionalVoivodeships = voivodeshipsService.getSingle(id);
 
         if (optionalVoivodeships.isPresent()) {

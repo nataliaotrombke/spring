@@ -1,6 +1,9 @@
 package com.github.nataliaotrombke.demoapi.controllers;
 
+import com.github.nataliaotrombke.demoapi.dto.TownsDto;
+import com.github.nataliaotrombke.demoapi.dto.VoivodeshipsDto;
 import com.github.nataliaotrombke.demoapi.services.TownsService;
+import com.github.nataliaotrombke.demoapi.services.VoivodeshipsService;
 import com.github.nataliaotrombke.demodata.databaseModel.Towns;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 public class TownsController {
-    private TownsService townsService;
+    private final TownsService townsService;
+    private final VoivodeshipsService voivodeshipsService;
 
-    public TownsController(TownsService townsService) {
+    public TownsController(TownsService townsService, VoivodeshipsService voivodeshipsService) {
         this.townsService = townsService;
+        this.voivodeshipsService = voivodeshipsService;
     }
 
     @GetMapping("/towns")
@@ -20,14 +25,19 @@ public class TownsController {
         return townsService.getAll();
     }
     @PostMapping("/towns")
-    public int createTown(@RequestBody Towns towns) {
-        return townsService.create(towns);
+    public int createTown(@RequestBody TownsDto townsDto, VoivodeshipsDto voivodeshipsDto) {
+        var townsDb =  new Towns();
+        townsDb.setTownsName(townsDto.getTownsName());
+        var foundVoivodeships = voivodeshipsService.getSingle(voivodeshipsDto.getVoivodeshipsId()).get();
+        townsDb.setVoivodeships(foundVoivodeships);
+
+        return townsService.create(townsDb);
     }
 
     @PatchMapping("/towns/{id}")
     public ResponseEntity<?> updateTowns(
             @PathVariable int id,
-            @RequestBody Towns partialUpdate) {
+            @RequestBody TownsDto partialUpdate) {
         var optionalTowns = townsService.getSingle(id);
 
         if (optionalTowns.isPresent()) {
@@ -35,6 +45,10 @@ public class TownsController {
 
             if (partialUpdate.getTownsName() != null) {
                 existingTowns.setTownsName(partialUpdate.getTownsName());
+            }
+            if (partialUpdate.getVoivodeshipsId() != 0) {
+                var foundVoivodeships = voivodeshipsService.getSingle(partialUpdate.getVoivodeshipsId()).get();
+                existingTowns.setVoivodeships(foundVoivodeships);
             }
 
             townsService.createOrUpdate(existingTowns);

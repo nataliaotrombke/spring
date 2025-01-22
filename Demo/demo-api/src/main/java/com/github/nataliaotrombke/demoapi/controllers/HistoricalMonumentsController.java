@@ -1,5 +1,6 @@
 package com.github.nataliaotrombke.demoapi.controllers;
 
+import com.github.nataliaotrombke.demoapi.dto.HistoricalMonumentsDto;
 import com.github.nataliaotrombke.demoapi.services.HistoricalMonumentsService;
 import com.github.nataliaotrombke.demoapi.services.TownsService;
 import com.github.nataliaotrombke.demodata.databaseModel.HistoricalMonuments;
@@ -25,14 +26,30 @@ public class HistoricalMonumentsController {
     }
 
     @PostMapping("/historicalMonuments")
-    public int createHistoricalMonument(@RequestBody HistoricalMonuments historicalMonuments) {
-        return historicalMonumentsService.createOrUpdate(historicalMonuments);
+    public ResponseEntity<?> createHistoricalMonument(@RequestBody HistoricalMonumentsDto historicalMonumentsDto) {
+        var historicalMonumentsDb = new HistoricalMonuments();
+        historicalMonumentsDb.setMonumentsName(historicalMonumentsDto.getMonumentsName());
+        historicalMonumentsDb.setStreetName(historicalMonumentsDto.getStreetName());
+        historicalMonumentsDb.setBuildingNumber(historicalMonumentsDto.getBuildingNumber());
+        historicalMonumentsDb.setTypeOfHistoricalMonument(historicalMonumentsDto.getTypeOfHistoricalMonument());
+        historicalMonumentsDb.setDateOfEntry(historicalMonumentsDto.getDateOfEntry());
+        var foundTown = townsService.getSingle(historicalMonumentsDto.getTownsId());
+
+        if (foundTown.isEmpty()) {
+            return new ResponseEntity<>("Podałeś id miasta " + historicalMonumentsDto.getTownsId()+"  a tak się składa, że w bazie takiego nie ma", HttpStatus.NOT_FOUND);
+        }
+
+        historicalMonumentsDb.setTowns(foundTown.get());
+
+        var created = historicalMonumentsService.create(historicalMonumentsDb);
+
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PatchMapping("/historicalMonuments/{id}")
     public ResponseEntity<?> updateHistoricalMonument(
             @PathVariable int id,
-            @RequestBody HistoricalMonuments partialUpdate) {
+            @RequestBody HistoricalMonumentsDto partialUpdate) {
         var optionalHistoricalMonuments = historicalMonumentsService.getSingle(id);
 
         if (optionalHistoricalMonuments.isPresent()) {
@@ -53,8 +70,9 @@ public class HistoricalMonumentsController {
             if (partialUpdate.getBuildingNumber() != 0) {
                 existingMonument.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
-            if (partialUpdate.getTownsId() != 0) {
-                existingMonument.setTownsId(partialUpdate.getTownsId());
+            if (partialUpdate.getTownsId() != 0){
+                var foundTown = townsService.getSingle(partialUpdate.getTownsId()).get();
+                existingMonument.setTowns(foundTown);
             }
 
             historicalMonumentsService.createOrUpdate(existingMonument);

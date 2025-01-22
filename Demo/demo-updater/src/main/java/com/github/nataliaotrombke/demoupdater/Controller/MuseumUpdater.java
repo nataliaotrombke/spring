@@ -27,7 +27,7 @@ public class MuseumUpdater {
     public MuseumUpdater(TownsRepository townsRepository, MuseumRepository museumRepository, VoivodeshipsRepository voivodeshipsRepository) {
         this.townsRepository = townsRepository;
         this.museumRepository = museumRepository;
-        this.voivodeshipsRepository = voivodeshipsRepository;
+            this.voivodeshipsRepository = voivodeshipsRepository;
     }
 
     public void updateByCity(String city) throws IOException, URISyntaxException, CsvValidationException {
@@ -73,7 +73,6 @@ public class MuseumUpdater {
                 if (foundTown.isEmpty()) {
                     var townToSave = new Towns();
                     townToSave.setTownsName(townName);
-
                     townToSave.setVoivodeships(voivodeshipsToUse);
                     townToUse = townsRepository.save(townToSave);
                 } else {

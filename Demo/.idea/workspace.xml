@@ -4,53 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="dodane pobieranie z pliku csv, ale tylko jednego">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/demo-data/Data.demo-data.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/MuseumsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="duzo tego">
+      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/HistoricalMonumentsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/ImmovableMonumentsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/TownsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/VoivodeshipsDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdaterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/HistoricalMonumentsControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/HistoricalMonumentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/ImmovableMonumentsControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/ImmovableMonumentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/MuseumControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/MuseumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsHistoricalMonumentsControlers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsImmovableMonumentsControler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsVoivodeshipsControler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/VoivodeshipsControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/VoivodeshipsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/HistoricalMonumentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/HistoricalMonumentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/ImmovableMonumentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/ImmovableMonumentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/MuseumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/MuseumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsHistoricalMonumentsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsImmovableMonumentsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsVoivodeshipsService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/VoivodeshipsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/VoivodeshipsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/HistoricalMonumentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/HistoricalMonumentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/ImmovableMonumentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/ImmovableMonumentsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/TownsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/VoivodeshipsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/VoivodeshipsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/MuseumsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/dto/MuseumsDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/HistoricalMonuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/HistoricalMonuments.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/ImmovableMonuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/ImmovableMonuments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Museums.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Museums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Towns.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Towns.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsHistoricalMonuments.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsHistoricalMonumentsId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsImmovableMonuments.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsImmovableMonumentsId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsVoivodeships.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/TownsVoivodeshipsId.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Voivodeships.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/databaseModel/Voivodeships.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/HistoricalMonumentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/HistoricalMonumentsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/ImmovableMonumentsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/ImmovableMonumentsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/TownsHistoricalMonumentsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/TownsImmovableMonumentsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/TownsVoivodeshipsRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/VoivodeshipsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/repositories/VoivodeshipsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdaterContreller.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdaterContreller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdaterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdaterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pomniki historii.sql" beforeDir="false" afterPath="$PROJECT_DIR$/pomniki historii.sql" afterDir="false" />
     </list>
     <list id="d827742f-792b-471f-a45c-eedeb1540e99" name="nie ruszac" comment="">
       <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/readme.md" afterDir="false" />
@@ -223,7 +194,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApiApplication">
+  <component name="RunManager" selected="Spring Boot.DemoUpdaterApplication">
     <configuration name="Demo [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -297,7 +268,7 @@
       <workItem from="1737403329402" duration="5686000" />
       <workItem from="1737411228124" duration="26000" />
       <workItem from="1737411274399" duration="34217000" />
-      <workItem from="1737572199383" duration="4637000" />
+      <workItem from="1737572199383" duration="11882000" />
     </task>
     <task id="LOCAL-00001" summary="wstępne pobieranie z internetu">
       <option name="closed" value="true" />
@@ -315,15 +286,25 @@
       <option name="project" value="LOCAL" />
       <updated>1737475518594</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="duzo tego">
+      <option name="closed" value="true" />
+      <created>1737577169338</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737577169338</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="wstępne pobieranie z internetu" />
     <MESSAGE value="dodane pobieranie z pliku csv, ale tylko jednego" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodane pobieranie z pliku csv, ale tylko jednego" />
+    <MESSAGE value="duzo tego" />
+    <option name="LAST_COMMIT_MESSAGE" value="duzo tego" />
   </component>
 </project>

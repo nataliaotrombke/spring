@@ -1,6 +1,8 @@
 package com.github.nataliaotrombke.demoapi.controllers;
 
+import com.github.nataliaotrombke.demoapi.dto.ImmovableMonumentsDto;
 import com.github.nataliaotrombke.demoapi.services.ImmovableMonumentsService;
+import com.github.nataliaotrombke.demoapi.services.TownsService;
 import com.github.nataliaotrombke.demodata.databaseModel.ImmovableMonuments;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,10 +12,12 @@ import java.util.List;
 
 @RestController
 public class ImmovableMonumentsController {
+    private final TownsService townsService;
     private ImmovableMonumentsService immovableMonumentsService;
 
-    public ImmovableMonumentsController(ImmovableMonumentsService immovableMonumentsService) {
+    public ImmovableMonumentsController(ImmovableMonumentsService immovableMonumentsService, TownsService townsService) {
         this.immovableMonumentsService = immovableMonumentsService;
+        this.townsService = townsService;
     }
 
     @GetMapping("/immovableMonuments")
@@ -29,7 +33,7 @@ public class ImmovableMonumentsController {
     @PatchMapping("/immovableMonuments/{id}")
     public ResponseEntity<?> updateImmovableMonuments(
             @PathVariable int id,
-            @RequestBody ImmovableMonuments partialUpdate) {
+            @RequestBody ImmovableMonumentsDto partialUpdate) {
         var optionalImmovableMonuments = immovableMonumentsService.getSingle(id);
 
         if (optionalImmovableMonuments.isPresent()) {
@@ -48,7 +52,8 @@ public class ImmovableMonumentsController {
                 existingImmovableMonuments.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
             if (partialUpdate.getTownsId() != 0) {
-                existingImmovableMonuments.setTownsId(partialUpdate.getTownsId());
+                var foundTown = townsService.getSingle(partialUpdate.getTownsId()).get();
+                existingImmovableMonuments.setTown(foundTown);
             }
 
             immovableMonumentsService.createOrUpdate(existingImmovableMonuments);

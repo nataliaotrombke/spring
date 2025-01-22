@@ -1,6 +1,5 @@
 package com.github.nataliaotrombke.demoapi.dto;
 
-
 public class MuseumsDto {
   private int museumsId;
   private int townsId;

@@ -8,19 +8,21 @@ public class ImmovableMonuments {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int monumentsId;
-  private int townsId;
+  @ManyToOne
+  @JoinColumn(name = "towns_id")
+  private Towns town;
   private String monumentsName;
   private String architecturalStyle;
   private String streetName;
   private int buildingNumber;
 
-  public ImmovableMonuments(int monumentsId, String monumentsName, String architecturalStyle, String streetName, int buildingNumber, int townsId) {
+  public ImmovableMonuments(int monumentsId, Towns town, String monumentsName, String architecturalStyle, String streetName, int buildingNumber) {
     this.monumentsId = monumentsId;
+    this.town = town;
     this.monumentsName = monumentsName;
     this.architecturalStyle = architecturalStyle;
     this.streetName = streetName;
     this.buildingNumber = buildingNumber;
-    this.townsId = townsId;
   }
 
   public ImmovableMonuments() {
@@ -32,6 +34,14 @@ public class ImmovableMonuments {
 
   public void setMonumentsId(int monumentsId) {
     this.monumentsId = monumentsId;
+  }
+
+  public Towns getTown() {
+    return town;
+  }
+
+  public void setTown(Towns town) {
+    this.town = town;
   }
 
   public String getMonumentsName() {
@@ -67,13 +77,6 @@ public class ImmovableMonuments {
   }
 
   public int getTownsId() {
-    return townsId;
-  }
-
-  public void setTownsId(int townsId) {
-    this.townsId = townsId;
-  }
-
-  public void setTowns(Towns townToUse) {
+    return 0;
   }
 }

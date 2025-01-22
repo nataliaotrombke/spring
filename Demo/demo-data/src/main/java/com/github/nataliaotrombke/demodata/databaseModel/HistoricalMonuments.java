@@ -8,12 +8,28 @@ public class HistoricalMonuments {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int monumentsId;
+  @ManyToOne
+  @JoinColumn(name = "towns_id")
+  private Towns towns;
   private String monumentsName;
   private String typeOfHistoricalMonument;
   private String dateOfEntry;
   private String streetName;
   private int buildingNumber;
-  private int townsId;
+
+  public HistoricalMonuments(int monumentsId, Towns towns, String monumentsName, String typeOfHistoricalMonument, String dateOfEntry, String streetName, int buildingNumber) {
+    this.monumentsId = monumentsId;
+    this.towns = towns;
+    this.monumentsName = monumentsName;
+    this.typeOfHistoricalMonument = typeOfHistoricalMonument;
+    this.dateOfEntry = dateOfEntry;
+    this.streetName = streetName;
+    this.buildingNumber = buildingNumber;
+  }
+
+  public HistoricalMonuments() {
+
+  }
 
   public int getMonumentsId() {
     return monumentsId;
@@ -63,14 +79,12 @@ public class HistoricalMonuments {
     this.buildingNumber = buildingNumber;
   }
 
-  public int getTownsId() {
-    return townsId;
+  public Towns getTowns() {
+    return towns;
   }
 
-  public void setTownsId(int townsId) {
-    this.townsId = townsId;
+  public void setTowns(Towns towns) {
+    this.towns = towns;
   }
 
-  public void setTown(Towns townToUse) {
-  }
 }
