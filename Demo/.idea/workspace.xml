@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="jest 5 encji, jest warstwa bazodanowa oparta na repozytoria Spring, jest Rest Controller dla zasobów bazodanowych, jest to projekt modułowy oraz jest update bazy danych danymi z internetu">
-      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/controllers/LogsController.java" afterDir="false" />
+    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="dodane wykorzystanie logowania - zrzut logów do pliku(wykonanie api do odczytywania logów)">
+      <change afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/ScheduledTasks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Updater/HistoricalMonumentsUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdaterContreller.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/HistoricalMonumentsUpdaterContreller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Updater/ImmovableMonumentsUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdaterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/ImmovableMonumentsUpdaterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Updater/MuseumUpdater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdaterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/Controller/MuseumUpdaterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-updater/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="d827742f-792b-471f-a45c-eedeb1540e99" name="nie ruszac" comment="">
@@ -181,7 +187,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.DemoApiApplication">
+  <component name="RunManager" selected="Spring Boot.DemoUpdaterApplication">
     <configuration name="Demo [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -256,7 +262,7 @@
       <workItem from="1737411228124" duration="26000" />
       <workItem from="1737411274399" duration="34217000" />
       <workItem from="1737572199383" duration="12228000" />
-      <workItem from="1737637361470" duration="20879000" />
+      <workItem from="1737637361470" duration="24652000" />
     </task>
     <task id="LOCAL-00001" summary="wstępne pobieranie z internetu">
       <option name="closed" value="true" />
@@ -298,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737648899171</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="dodane wykorzystanie logowania - zrzut logów do pliku(wykonanie api do odczytywania logów)">
+      <option name="closed" value="true" />
+      <created>1737663292626</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737663292626</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +325,7 @@
     <MESSAGE value="duzo tego" />
     <MESSAGE value="chyba działa" />
     <MESSAGE value="jest 5 encji, jest warstwa bazodanowa oparta na repozytoria Spring, jest Rest Controller dla zasobów bazodanowych, jest to projekt modułowy oraz jest update bazy danych danymi z internetu" />
-    <option name="LAST_COMMIT_MESSAGE" value="jest 5 encji, jest warstwa bazodanowa oparta na repozytoria Spring, jest Rest Controller dla zasobów bazodanowych, jest to projekt modułowy oraz jest update bazy danych danymi z internetu" />
+    <MESSAGE value="dodane wykorzystanie logowania - zrzut logów do pliku(wykonanie api do odczytywania logów)" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodane wykorzystanie logowania - zrzut logów do pliku(wykonanie api do odczytywania logów)" />
   </component>
 </project>

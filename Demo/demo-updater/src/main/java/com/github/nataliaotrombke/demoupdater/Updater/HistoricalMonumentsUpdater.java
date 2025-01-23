@@ -1,4 +1,4 @@
-package com.github.nataliaotrombke.demoupdater.Controller;
+package com.github.nataliaotrombke.demoupdater.Updater;
 
 import com.github.nataliaotrombke.demodata.databaseModel.HistoricalMonuments;
 import com.github.nataliaotrombke.demodata.databaseModel.Towns;
@@ -13,14 +13,12 @@ import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Arrays;
 
 @Service
 public class HistoricalMonumentsUpdater {

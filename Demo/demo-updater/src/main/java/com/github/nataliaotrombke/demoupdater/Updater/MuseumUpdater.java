@@ -1,4 +1,4 @@
-package com.github.nataliaotrombke.demoupdater.Controller;
+package com.github.nataliaotrombke.demoupdater.Updater;
 
 import com.github.nataliaotrombke.demodata.databaseModel.Museums;
 import com.github.nataliaotrombke.demodata.databaseModel.Towns;

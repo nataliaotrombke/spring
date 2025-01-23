@@ -1,9 +1,6 @@
-package com.github.nataliaotrombke.demoupdater.Controller;
+package com.github.nataliaotrombke.demoupdater.Updater;
 
 
-import com.github.nataliaotrombke.demodata.databaseModel.ImmovableMonuments;
-import com.github.nataliaotrombke.demodata.databaseModel.Towns;
-import com.github.nataliaotrombke.demodata.databaseModel.Voivodeships;
 import com.github.nataliaotrombke.demodata.repositories.ImmovableMonumentsRepository;
 import com.github.nataliaotrombke.demodata.repositories.TownsRepository;
 import com.github.nataliaotrombke.demodata.repositories.VoivodeshipsRepository;
@@ -20,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Arrays;
 
 @Service
 public class ImmovableMonumentsUpdater {

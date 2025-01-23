@@ -1,5 +1,6 @@
 package com.github.nataliaotrombke.demoupdater.Controller;
 
+import com.github.nataliaotrombke.demoupdater.Updater.ImmovableMonumentsUpdater;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
