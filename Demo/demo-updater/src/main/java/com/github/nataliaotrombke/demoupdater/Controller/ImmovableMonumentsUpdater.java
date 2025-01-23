@@ -7,7 +7,9 @@ import com.github.nataliaotrombke.demodata.databaseModel.Voivodeships;
 import com.github.nataliaotrombke.demodata.repositories.ImmovableMonumentsRepository;
 import com.github.nataliaotrombke.demodata.repositories.TownsRepository;
 import com.github.nataliaotrombke.demodata.repositories.VoivodeshipsRepository;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 
 @Service
 public class ImmovableMonumentsUpdater {
@@ -39,10 +42,19 @@ public class ImmovableMonumentsUpdater {
         connection.setRequestMethod("GET");
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            CSVReader csvReader = new CSVReader(reader);
+            CSVReader csvReader = new CSVReaderBuilder(reader)
+                    .withCSVParser(
+                            new CSVParserBuilder()
+                                    .withSeparator(';')
+                                    .build()
+                    )
+                    .build();
 
             String[] nextLine;
+            var wiersz = 0;
             while ((nextLine = csvReader.readNext()) != null) {
+                System.out.printf("%d%n", ++wiersz);
+
                 var lp = nextLine[0];
                 var formaochrony = nextLine[1];
                 var dokladnosci = nextLine[2];
@@ -58,44 +70,48 @@ public class ImmovableMonumentsUpdater {
                 var gmina = nextLine[12];
                 var townName = nextLine[13];
                 var streetName = nextLine[14];
-                var buildingNumber = nextLine[15];
+                var buildingNumber = nextLine[15];;
 
-                if (!townName.equalsIgnoreCase(city)) continue;
 
-                Voivodeships voivodeshipsToUse;
-                var foundVoivodeship = voivodeshipsRepository.findFirstByVoivodeshipsName(voivodeshipsName);
-                if (foundVoivodeship.isEmpty()){
-                    var voivodeshipToSave = new Voivodeships();
-                    voivodeshipToSave.setVoivodeshipsName(voivodeshipsName);
-                    voivodeshipsToUse = voivodeshipsRepository.save(voivodeshipToSave);
-                } else {
-                    voivodeshipsToUse = foundVoivodeship.get();
-                }
+//                if (!townName.equalsIgnoreCase(city)) continue;
+////                System.out.println(Arrays.toString(nextLine));
+//
+//                Voivodeships voivodeshipsToUse;
+//                var foundVoivodeship = voivodeshipsRepository.findFirstByVoivodeshipsName(voivodeshipsName);
+//                if (foundVoivodeship.isEmpty()) {
+//                    var voivodeshipToSave = new Voivodeships();
+//                    voivodeshipToSave.setVoivodeshipsName(voivodeshipsName);
+//                    voivodeshipsToUse = voivodeshipsRepository.save(voivodeshipToSave);
+//                } else {
+//                    voivodeshipsToUse = foundVoivodeship.get();
+//                }
+//
+//                Towns townToUse;
+//                var foundTown = townsRepository.findFirstByTownsName(townName);
+//                if (foundTown.isEmpty()) {
+//                    var townToSave = new Towns();
+//                    townToSave.setTownsName(townName);
+//                    townToSave.setVoivodeships(voivodeshipsToUse);
+//                    townToUse = townsRepository.save(townToSave);
+//                } else {
+//                    townToUse = foundTown.get();
+//                }
+//
+//                ImmovableMonuments immovableMonumentsToSave;
+//                var foundImmovableMonuments = immovableMonumentsRepository.findFirstByMonumentsName(monumentsName);
+//                if (foundImmovableMonuments.isPresent()) {
+//                    immovableMonumentsToSave = foundImmovableMonuments.get();
+//                } else {
+//                    immovableMonumentsToSave = new ImmovableMonuments();
+//                }
+//
+//                immovableMonumentsToSave.setTown(townToUse);
+//                immovableMonumentsToSave.setMonumentsName(monumentsName);
+//                immovableMonumentsToSave.setStreetName(streetName);
+//                immovableMonumentsToSave.setArchitecturalStyle(architecturalStyle);
+//                var createdMonuments = immovableMonumentsRepository.save(immovableMonumentsToSave);
+//                System.out.println("Zabytki nieruchome: " + monumentsName + " zapisane pod kluczem: " + createdMonuments.getMonumentsId() + "pod kluczem: " + townToUse.getTownsId());
 
-                Towns townToUse;
-                var foundTown = townsRepository.findFirstByTownsName(townName);
-                if (foundTown.isEmpty()) {
-                    var townToSave = new Towns();
-                    townToSave.setTownsName(townName);
-                    townToSave.setVoivodeships(voivodeshipsToUse);
-                    townToUse = townsRepository.save(townToSave);
-                } else {
-                    townToUse = foundTown.get();
-                }
-
-                ImmovableMonuments immovableMonumentsToSave;
-                var foundImmovableMonuments = immovableMonumentsRepository.findFirstByMonumentsName(monumentsName);
-                if (foundImmovableMonuments.isPresent()){
-                    immovableMonumentsToSave = foundImmovableMonuments.get();
-                } else {
-                    immovableMonumentsToSave = new ImmovableMonuments();
-                }
-
-                immovableMonumentsToSave.setMonumentsName(monumentsName);
-                immovableMonumentsToSave.setStreetName(streetName);
-                var createdMonuments = immovableMonumentsRepository.save(immovableMonumentsToSave);
-
-                System.out.println("Zabytki nieruchome: " + monumentsName + " zapisane pod kluczem: " + createdMonuments.getMonumentsId() + "pod kluczem: " + townToUse.getTownsId());
             }
         } finally {
             connection.disconnect();

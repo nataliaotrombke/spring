@@ -36,7 +36,7 @@ public class HistoricalMonumentsController {
         var foundTown = townsService.getSingle(historicalMonumentsDto.getTownsId());
 
         if (foundTown.isEmpty()) {
-            return new ResponseEntity<>("Podałeś id miasta " + historicalMonumentsDto.getTownsId()+"  a tak się składa, że w bazie takiego nie ma", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("You have provided the city id " + historicalMonumentsDto.getTownsId() +"  and it so happens that in the base there is no such", HttpStatus.NOT_FOUND);
         }
 
         historicalMonumentsDb.setTowns(foundTown.get());
@@ -71,8 +71,11 @@ public class HistoricalMonumentsController {
                 existingMonument.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
             if (partialUpdate.getTownsId() != 0){
-                var foundTown = townsService.getSingle(partialUpdate.getTownsId()).get();
-                existingMonument.setTowns(foundTown);
+                var foundTown = townsService.getSingle(partialUpdate.getTownsId());
+                if (foundTown.isEmpty()){
+                    return new ResponseEntity<>("You have provided the city id " + partialUpdate.getTownsId() + ", and it so happens that in the base there is no such.", HttpStatus.NOT_FOUND);
+                }
+                existingMonument.setTowns(foundTown.get());
             }
 
             historicalMonumentsService.createOrUpdate(existingMonument);

@@ -26,8 +26,23 @@ public class ImmovableMonumentsController {
     }
 
     @PostMapping("/immovableMonuments")
-    public int createMonument(@RequestBody ImmovableMonuments immovableMonuments) {
-        return immovableMonumentsService.create(immovableMonuments);
+    public ResponseEntity<?> createImmovableMonuments(@RequestBody ImmovableMonumentsDto immovableMonumentsDto) {
+        var immovableMonumentsDb = new ImmovableMonuments();
+        immovableMonumentsDb.setMonumentsName(immovableMonumentsDto.getMonumentsName());
+        immovableMonumentsDb.setStreetName(immovableMonumentsDto.getStreetName());
+        immovableMonumentsDb.setBuildingNumber(immovableMonumentsDto.getBuildingNumber());
+        immovableMonumentsDb.setArchitecturalStyle(immovableMonumentsDto.getArchitecturalStyle());
+        var foundTown = townsService.getSingle(immovableMonumentsDto.getTownsId());
+
+        if (foundTown.isEmpty()){
+            return new ResponseEntity<>("You have provided the city id " + immovableMonumentsDto.getTownsId() +" and it so happens that in the base there is no such", HttpStatus.NOT_FOUND);
+        }
+
+        immovableMonumentsDb.setTown(foundTown.get());
+
+        var created = immovableMonumentsService.create(immovableMonumentsDb);
+
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PatchMapping("/immovableMonuments/{id}")
@@ -52,8 +67,11 @@ public class ImmovableMonumentsController {
                 existingImmovableMonuments.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
             if (partialUpdate.getTownsId() != 0) {
-                var foundTown = townsService.getSingle(partialUpdate.getTownsId()).get();
-                existingImmovableMonuments.setTown(foundTown);
+                var foundTown = townsService.getSingle(partialUpdate.getTownsId());
+                if (foundTown.isEmpty()){
+                    return new ResponseEntity<>("You have provided the city id " + partialUpdate.getTownsId() + ", and it so happens that in the base there is no such.", HttpStatus.NOT_FOUND);
+                }
+                existingImmovableMonuments.setTown(foundTown.get());
             }
 
             immovableMonumentsService.createOrUpdate(existingImmovableMonuments);

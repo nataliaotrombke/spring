@@ -26,15 +26,22 @@ public class MuseumController {
     }
 
     @PostMapping("/museums")
-    public int createMuseum(@RequestBody MuseumsDto museumsDto) {
+    public ResponseEntity<?> createMuseum(@RequestBody MuseumsDto museumsDto) {
         var museumDb = new Museums();
         museumDb.setMuseumsName(museumsDto.getMuseumsName());
         museumDb.setBuildingNumber(museumsDto.getBuildingNumber());
         museumDb.setStreetName(museumsDto.getStreetName());
-        var foundTown = townsService.getSingle(museumsDto.getTownsId()).get();
-        museumDb.setTown(foundTown);
+        var foundTown = townsService.getSingle(museumsDto.getTownsId());
 
-        return museumService.create(museumDb);
+        if (foundTown.isEmpty()){
+            return new ResponseEntity<>("You have provided the city id " + museumsDto.getTownsId() +" and it so happens that in the base there is no such", HttpStatus.NOT_FOUND);
+        }
+
+        museumDb.setTown(foundTown.get());
+
+        var created = museumService.create(museumDb);
+
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PatchMapping("/museums/{id}")
@@ -56,8 +63,11 @@ public class MuseumController {
                 existingMuseum.setBuildingNumber(partialUpdate.getBuildingNumber());
             }
             if (partialUpdate.getTownsId() != 0){
-                var foundTown = townsService.getSingle(partialUpdate.getTownsId()).get();
-                existingMuseum.setTown(foundTown);
+                var foundTown = townsService.getSingle(partialUpdate.getTownsId());
+                if (foundTown.isEmpty()){
+                    return new ResponseEntity<>("You have provided the city id " + partialUpdate.getTownsId() + ", and it so happens that in the base there is no such.", HttpStatus.NOT_FOUND);
+                }
+                existingMuseum.setTown(foundTown.get());
             }
 
             museumService.createOrUpdate(existingMuseum);

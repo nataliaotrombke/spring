@@ -26,10 +26,8 @@ public class VoivodeshipsController {
     }
 
     @PostMapping("/voivodeships")
-    public int createVoivodeship(@RequestBody VoivodeshipsDto voivodeshipsDto) {
-        var voivodeshipsDb = new Voivodeships();
-        voivodeshipsDb.setVoivodeshipsName(voivodeshipsDto.getVoivodeshipsName());
-        return voivodeshipsService.create(voivodeshipsDb);
+    public int createVoivodeship(@RequestBody Voivodeships voivodeships) {
+        return voivodeshipsService.create(voivodeships);
     }
 
     @PatchMapping("/voivodeships/{id}")

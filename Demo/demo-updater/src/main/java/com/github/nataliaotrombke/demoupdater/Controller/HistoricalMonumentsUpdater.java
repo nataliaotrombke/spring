@@ -6,17 +6,21 @@ import com.github.nataliaotrombke.demodata.databaseModel.Voivodeships;
 import com.github.nataliaotrombke.demodata.repositories.HistoricalMonumentsRepository;
 import com.github.nataliaotrombke.demodata.repositories.TownsRepository;
 import com.github.nataliaotrombke.demodata.repositories.VoivodeshipsRepository;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
 
 @Service
 public class HistoricalMonumentsUpdater {
@@ -38,12 +42,17 @@ public class HistoricalMonumentsUpdater {
         connection.setRequestMethod("GET");
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            CSVReader csvReader = new CSVReader(reader);
-
-            csvReader.readNext();
+            CSVReader csvReader = new CSVReaderBuilder(reader)
+                    .withCSVParser(
+                            new CSVParserBuilder()
+                                    .withSeparator(';')
+                                    .build()
+                    )
+                    .build();
 
             String[] nextLine;
             while ((nextLine = csvReader.readNext()) != null) {
+
                 var lp = nextLine[0];
                 var historicalMonumentsName = nextLine[1];
                 var dokladnosci = nextLine[2];
@@ -90,6 +99,8 @@ public class HistoricalMonumentsUpdater {
                 historicalMonumentsToSave.setMonumentsName(historicalMonumentsName);
                 historicalMonumentsToSave.setStreetName(streetName);
                 historicalMonumentsToSave.setTowns(townToUse);
+                historicalMonumentsToSave.setTypeOfHistoricalMonument(typeOfHistoricalMonument);
+                historicalMonumentsToSave.setDateOfEntry(dateOfEntry);
                 var createdHistoricalMonuments = historicalMonumentsRepository.save(historicalMonumentsToSave);
 
                 System.out.println("Historical Monuments: " + historicalMonumentsName + " zapisane pod kluczem: " + createdHistoricalMonuments.getMonumentsId());

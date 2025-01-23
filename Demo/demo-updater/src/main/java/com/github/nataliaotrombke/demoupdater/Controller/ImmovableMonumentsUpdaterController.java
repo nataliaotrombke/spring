@@ -18,7 +18,7 @@ public class ImmovableMonumentsUpdaterController {
         this.updater = updater;
     }
 
-    @GetMapping("startImmovableMonuments")
+    @GetMapping("startImmovable")
     public ResponseEntity<String> start(@RequestParam String city) throws CsvValidationException, IOException, URISyntaxException {
         updater.updateByCity(city);
 

@@ -25,13 +25,20 @@ public class TownsController {
         return townsService.getAll();
     }
     @PostMapping("/towns")
-    public int createTown(@RequestBody TownsDto townsDto, VoivodeshipsDto voivodeshipsDto) {
+    public ResponseEntity<?> createTown(@RequestBody TownsDto townsDto) {
         var townsDb =  new Towns();
         townsDb.setTownsName(townsDto.getTownsName());
-        var foundVoivodeships = voivodeshipsService.getSingle(voivodeshipsDto.getVoivodeshipsId()).get();
-        townsDb.setVoivodeships(foundVoivodeships);
+        var foundVoivodeships = voivodeshipsService.getSingle(townsDto.getVoivodeshipsId());
 
-        return townsService.create(townsDb);
+        if (foundVoivodeships.isEmpty()) {
+            return new ResponseEntity<>("You provided the id of the voivodeship  " + townsDto.getVoivodeshipsId() +" and it so happens that in the base there is no such", HttpStatus.NOT_FOUND);
+        }
+
+        townsDb.setVoivodeships(foundVoivodeships.get());
+
+        var created = townsService.create(townsDb);
+
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PatchMapping("/towns/{id}")
@@ -47,8 +54,11 @@ public class TownsController {
                 existingTowns.setTownsName(partialUpdate.getTownsName());
             }
             if (partialUpdate.getVoivodeshipsId() != 0) {
-                var foundVoivodeships = voivodeshipsService.getSingle(partialUpdate.getVoivodeshipsId()).get();
-                existingTowns.setVoivodeships(foundVoivodeships);
+                var foundVoivodeships = voivodeshipsService.getSingle(partialUpdate.getVoivodeshipsId());
+                if (foundVoivodeships.isEmpty()){
+                    return new ResponseEntity<>("You provided the id of the voivodeship  " + partialUpdate.getTownsId() + ", and it so happens that in the base there is no such.", HttpStatus.NOT_FOUND);
+                }
+                existingTowns.setVoivodeships(foundVoivodeships.get());
             }
 
             townsService.createOrUpdate(existingTowns);
