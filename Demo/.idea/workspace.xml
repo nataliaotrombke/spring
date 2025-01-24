@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="dodane spring schedulers">
-      <change afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/CacheConfig.java" afterDir="false" />
+    <list default="true" id="3eb50837-90fb-4575-9227-b8276ddc5baf" name="Changes" comment="dodane Spring Cache (konfiguracja z Caffeine)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/DemoApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/DemoApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/HistoricalMonumentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/HistoricalMonumentsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/CacheConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/CacheConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/ImmovableMonumentsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/ImmovableMonumentsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/MuseumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/MuseumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/TownsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/VoivodeshipsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-api/src/main/java/com/github/nataliaotrombke/demoapi/services/VoivodeshipsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo-data/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/DemoDataApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-data/src/main/java/com/github/nataliaotrombke/demodata/DemoDataApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo-updater/src/main/java/com/github/nataliaotrombke/demoupdater/DemoUpdaterApplication.java" afterDir="false" />
     </list>
     <list id="d827742f-792b-471f-a45c-eedeb1540e99" name="nie ruszac" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10/checksums/checksums.lock" afterDir="false" />
@@ -260,7 +258,7 @@
       <workItem from="1737411228124" duration="26000" />
       <workItem from="1737411274399" duration="34217000" />
       <workItem from="1737572199383" duration="12228000" />
-      <workItem from="1737637361470" duration="35881000" />
+      <workItem from="1737637361470" duration="39310000" />
     </task>
     <task id="LOCAL-00001" summary="wstępne pobieranie z internetu">
       <option name="closed" value="true" />
@@ -318,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737670362620</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="dodane Spring Cache (konfiguracja z Caffeine)">
+      <option name="closed" value="true" />
+      <created>1737754737256</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737754737256</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +339,7 @@
     <MESSAGE value="jest 5 encji, jest warstwa bazodanowa oparta na repozytoria Spring, jest Rest Controller dla zasobów bazodanowych, jest to projekt modułowy oraz jest update bazy danych danymi z internetu" />
     <MESSAGE value="dodane wykorzystanie logowania - zrzut logów do pliku(wykonanie api do odczytywania logów)" />
     <MESSAGE value="dodane spring schedulers" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodane spring schedulers" />
+    <MESSAGE value="dodane Spring Cache (konfiguracja z Caffeine)" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodane Spring Cache (konfiguracja z Caffeine)" />
   </component>
 </project>

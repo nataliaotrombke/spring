@@ -13,7 +13,7 @@ public class CacheConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager("historicalMonuments");
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("historicalMonuments", "museums", "immovableMonuments", "towns", "voivodeships");
         cacheManager.setCaffeine(caffeineCacheBuilder());
         return cacheManager;
     }
